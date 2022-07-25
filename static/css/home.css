@@ -42,7 +42,7 @@ nav{
 .main-img{
     width: 99vw;
     height: 90vh;
-    background-image: url(job.png);
+    background-image: url("/static/img/job.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
@@ -84,7 +84,7 @@ footer{
     width: 100vw;
     height: 60vh;
     background-color: black;
-    background-image: url("/img/wave.svg");
+    background-image: url("/static/img/wave.svg");
     color: white;
     display: flex;
     justify-content: space-around;
