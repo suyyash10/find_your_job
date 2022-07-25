@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+</head>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css')}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation&display=swap" rel="stylesheet">
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                Find Your Job
+            </div>
+            <ul class="lists">
+                <li class="scroll-home">Home</li>
+                <li class="scroll-about">About Us</li>
+                <li class="scroll-contact">Contact us</li>
+                <li><a href="{{url_for('signup')}}">Sign/Log in</a></li>
+            </ul>
+            <div class="hum">
+                <img src="https://img.icons8.com/material-outlined/48/FFFFFF/menu--v1.png" />
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="main-img"></div>
+        <div class="about">
+            <div class="heading">
+                About us
+            </div>
+            <div class="about-sec1">
+                <div class="about-img">
+                    <img src="{{ url_for('static', filename='img/hire.jpg')}}" alt="" srcset="" height="101%" width="100%">
+                </div>
+                <div class="about-info">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque quam officia, quo sunt corporis
+                    delectus. Mollitia, amet laudantium deserunt laborum animi doloribus neque accusamus sapiente
+                    eligendi blanditiis ipsum quis similique voluptatum maiores porro illum ad, eius delectus sequi
+                    debitis recusandae at exercitationem placeat. Ullam fuga quas eius, quos sit enim!
+                </div>
+            </div>
+            <div class="about-sec2">
+                <div class="about-info">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque quam officia, quo sunt corporis
+                    delectus. Mollitia, amet laudantium deserunt laborum animi doloribus neque accusamus sapiente
+                    eligendi blanditiis ipsum quis similique voluptatum maiores porro illum ad, eius delectus sequi
+                    debitis recusandae at exercitationem placeat. Ullam fuga quas eius, quos sit enim!
+                </div>
+                <div class="about-img">
+                    <img src="{{ url_for('static', filename='img/apply.jpg')}}" alt="" srcset="" height="100%" width="100%">
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-sec1">
+            <div class="heading-footer">
+                <h1>Contact Us</h1>
+                <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio, qui, consequuntur officiis
+                    autem adipisci explicabo minus error delectus iste, amet eligendi magni incidunt!
+                </p>
+            </div>
+            <input class="input" type="text" placeholder="enter your email id">
+            <div class="icons">
+                <ul>
+                    <li><img src="https://img.icons8.com/ios-filled/50/737373/facebook-new.png" /></li>
+                    <li><img src="https://img.icons8.com/ios-filled/50/737373/twitter-circled--v1.png" /></li>
+                    <li><img src="https://img.icons8.com/ios-filled/50/737373/linkedin-circled--v1.png" /></li>
+                    <li><img src="https://img.icons8.com/ios-filled/50/737373/instagram-new--v1.png" /></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-sec2">
+            <div class="heading-footer">
+                <h1>Operating on Mars as well</h1>
+                <p>
+                    With the help of ISRO, the indian organisation of space research and technology we have defeated the
+                    great scientists and offically richest man of world in the mission of making the mars as livble
+                    planet for human of earth.<br>Now our next mission is to capture jupiter and saturn as well and the
+                    main reason to capture saturn is to make a railway track on the ring of saturn so that it would be
+                    easy to travel all over the saturn.
+                </p>
+            </div>
+        </div>
+        <div class="footer-sec3">
+            <div class="heading-footer">
+                <h1>Hello World</h1>
+                <ul>
+                    <li class="scroll-home">Home</li>
+                    <li class="scroll-about2">About Us</li>
+                    <li>Contact us</li>
+                    <li>Sign/Log in</li>
+                </ul>
+                
+            </div>
+        </div>
+    </footer>
+    <script src="{{ url_for('static', filename='js/home.js')}}"></script>
+</body>
+
+</html>

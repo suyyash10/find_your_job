@@ -1,0 +1,190 @@
+*{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: 'Edu NSW ACT Foundation', cursive;
+
+}
+nav{
+    background-color: black;
+    color: white;
+    width: 100vw;
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo{
+    padding-left: 20px;
+    font-size: 3vw;
+}
+.lists{
+    padding-right: 20px;
+}
+.lists li{
+    list-style: none;
+    display: inline-block;
+    font-size: 2vw;
+    margin-left: 50px;
+    cursor: pointer;
+    transition: width 1s ease-out;
+}
+.lists a{
+    color: white;
+    text-decoration: none;
+}
+.lists li:hover{
+    font-size: 2.5vw;
+}
+.hum{
+    display: none;
+}
+.main-img{
+    width: 99vw;
+    height: 90vh;
+    background-image: url(job.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.about{
+    margin: 20px 0px;
+}
+.about .heading{
+    font-size: 4vw;
+    text-align: center;
+}
+.about-sec1 , .about-sec2{
+    width: 90vw;
+    height: 47vh;
+    margin: 30px auto;
+    display: flex;
+    justify-content: space-between;
+}
+.about-img{
+    width: 40%;
+    height: 100%;
+    overflow: hidden;
+}
+.about-info{
+    width: 50%;
+    font-size: 2vw;
+    text-align: center ;
+    padding: 35px 10px;
+    position: relative;
+    left: 100px;
+    opacity: 0;
+    transition:  left 2s , opacity 2s;
+}
+.showit .about-info{
+    left: 0px;
+    right: 0px;
+    opacity: 1;
+}
+footer{
+    width: 100vw;
+    height: 60vh;
+    background-color: black;
+    background-image: url("/img/wave.svg");
+    color: white;
+    display: flex;
+    justify-content: space-around;
+}
+.footer-sec1{
+    width: 30%;
+    height: 90%;
+}
+.heading-footer h1{
+    padding: 20px 30px;
+}
+.heading-footer p{
+    padding-left:30px;
+}
+.input{
+    width: 70%;
+    height: 10%;
+    padding: 2px;
+    margin-left: 30px;
+    margin-top: 10px;
+    border-radius: 9px;
+    border:1px solid black
+    
+}
+.icons ul li{
+    display: inline-block;
+    margin: 30px 15px;
+    cursor: pointer;
+}
+.footer-sec2{
+    width: 30%;
+    height: 90%;
+}
+.footer-sec3{
+    width: 30%;
+    height: 90%;
+}
+.footer-sec3 ul li{
+    list-style: none;
+    padding-left:  30px;
+    font-size: 200%;
+    cursor: pointer;
+}
+
+
+@media screen and (max-width:800px) {
+    .nav{
+        position: relative;
+    }
+    .hum{
+        display: block;
+        float: right;
+        padding-right: 20px;
+        
+    }
+    .logo{
+        font-size: 9vw;
+        text-align: center;
+    }
+    .lists{
+        position: absolute;
+        background-color: white;
+        color: black;
+        top: 15%;
+        width: 100vw;
+        text-align: center;
+        transform: skew(90deg);
+        transition: transform .9s ease-in-out;
+    }
+    .lists li{
+        display: block;
+        font-size: 5vw;
+        margin: 25px 0px; 
+        color: black;
+    }
+    .skew-open .lists{
+        transform: skew(0deg);
+    }
+    .main-img{
+        height: 50vh;
+        margin-top:0px ;
+    }
+    .about .heading{
+        font-size: 4vh;
+        text-align: center;
+    }
+    .about-sec1 , .about-sec2{
+        display: block;  
+    }
+    .about-img{
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+    }
+    .about-info{
+        width: 100%;
+        font-size: 2vh;
+        padding-top: 10px;
+    }
+
+
+    
+}
