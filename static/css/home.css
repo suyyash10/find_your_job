@@ -9,7 +9,7 @@ nav{
     background-color: black;
     color: white;
     width: 100vw;
-    height: 15vh;
+    height: 14vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -19,7 +19,7 @@ nav{
     font-size: 3vw;
 }
 .lists{
-    padding-right: 20px;
+    padding-right: 28px;
 }
 .lists li{
     list-style: none;
@@ -27,7 +27,7 @@ nav{
     font-size: 2vw;
     margin-left: 50px;
     cursor: pointer;
-    transition: width 1s ease-out;
+    transition: width 0.7s ease-out;
 }
 .lists a{
     color: white;
@@ -82,7 +82,7 @@ nav{
 }
 footer{
     width: 100vw;
-    height: 60vh;
+    height: 50vh;
     background-color: black;
     background-image: url("/static/img/wave.svg");
     color: white;
@@ -91,7 +91,7 @@ footer{
 }
 .footer-sec1{
     width: 30%;
-    height: 90%;
+    height: 110%;
 }
 .heading-footer h1{
     padding: 20px 30px;
