@@ -39,6 +39,8 @@ main{
     margin-bottom: 20px;
     padding-left: 5px;
     border-radius: 12px;
+    font-size: 1.5em;
+    text-align: center;
 }
 .form p{
     color: white;
