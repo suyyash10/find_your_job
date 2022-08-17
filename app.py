@@ -1,10 +1,30 @@
 from flask import *
 from flask_mysqldb import *
 from sqlalchemy import *
+from cryptography.fernet import Fernet
+'''from google_auth_oauthlib import *
+from google_auth_oauthlib.flow import *
+from oauthlib import *
+import os
+import pathlib'''
 import mysql.connector
 
 app = Flask(__name__)
 app.secret_key="mykey"
+
+file = open('key.key', 'rb')
+key = file.read()
+file.close()
+f = Fernet(key)
+
+'''google_client_id = "51389405275-h4qp9neamc2bitlc8h0h6lfcpor8ba8d.apps.googleusercontent.com"
+
+client_secret_file= os.path.join(pathlib.Path(__file__).parent, "client_secret.json")
+
+flow = Flow.from_client_secrets_file(
+    client_secrets_file=client_secret_file,
+    scopes=["https://www.googleapis.com/userinfo.profile", "https://googleapis.com/auth/userinfo.email", "openid"],
+    redirect_uri="http://127.0.0.1;5000/")'''
 
 #database Configuration
 app.config['MYSQL_HOST'] = 'localhost'
@@ -13,7 +33,16 @@ app.config['MYSQL_PASSWORD'] = '123456'
 app.config['MYSQL_DB'] = 'findmyjob'
 
 mysql = MySQL(app)
-
+'''
+#decorator for protection
+def login_is_required(function):
+    def wrapper(*args, **kwargs):
+        if "google_id" not in session:
+            abort(401)
+        else:
+            return function
+    return wrapper
+''' 
 
 @app.route("/")
 def home():
@@ -26,9 +55,13 @@ def seeker_login():
         username = loginDetails['username']
         password = loginDetails['password']
         cursor = mysql.connection.cursor()
-        cursor.execute("select * from seeker_loginData where username=%s and password=%s", (username, password,))
+        cursor.execute("select * from seeker_loginData where username=%s", (username,))
         details = cursor.fetchone()
-        if details:
+        test = details[1]
+        test = test.encode()
+        test = f.decrypt(test)
+        test = test.decode()
+        if details and test == password:
             session['loggedIn']= True
             session['username']= details[0]
             cursor.close()
@@ -38,6 +71,23 @@ def seeker_login():
             cursor.close()
             return render_template("login.html", msg=msg)               
     return render_template("login.html")
+'''
+@app.route("/seeker_googlelogin", methods=["GET", "POST"])
+def seeker_googlelogin():
+    if request.method == "POST":
+        details = request.form
+        username = details['username']
+        password = details['password']
+        cursor = mysql.connection.cursor()
+        cursor.execute("select * from seeker_logindata where username=%s", (username,))
+        test = cursor.fetchone()
+        if not test:
+            authorization_url, state= flow.authorization_url()
+            session["state"]= state
+            return redirect(authorization_url)
+    return render_template("seeker_googlelogin.html")
+'''
+
 
 @app.route("/seeker_signup" , methods=['GET', 'POST'])
 def seeker_signup():
@@ -46,6 +96,9 @@ def seeker_signup():
         username = userDetails['username']
         user_email = userDetails['user_email']
         user_password = userDetails['user_password']
+        user_password = user_password.encode()
+        user_password = f.encrypt(user_password)
+        user_password = user_password.decode()
         cursor = mysql.connection.cursor()
         cursor.execute("select username from seeker_loginData where username = %s", (username,))
         test = cursor.fetchone()
@@ -84,6 +137,9 @@ def company_signup():
         companyEmail = companyDetails['companyEmail']
         companyCity = companyDetails['companyCity']
         password = companyDetails['password']
+        password = password.encode()
+        password = f.encrypt(password)
+        password = password.decode()
         cursor =mysql.connection.cursor()
         cursor.execute("select * from company_logindata where username = %s", (username,))
         test = cursor.fetchone()
@@ -105,7 +161,11 @@ def company_login():
         cursor = mysql.connection.cursor()
         cursor.execute("select * from company_loginData where username=%s and password=%s", (username, password,))
         details = cursor.fetchone()
-        if details:
+        test = details[1]
+        test = test.encode()
+        test = f.decrypt()
+        test = test.decode()
+        if details and test == password:
             session['loggedIn']= True
             session['username']= details[0]
             cursor.close()
