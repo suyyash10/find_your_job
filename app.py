@@ -16,20 +16,20 @@ file = open('key.key', 'rb')
 key = file.read()
 file.close()
 f = Fernet(key)
-
-'''google_client_id = "51389405275-h4qp9neamc2bitlc8h0h6lfcpor8ba8d.apps.googleusercontent.com"
+'''
+google_client_id = "51389405275-h4qp9neamc2bitlc8h0h6lfcpor8ba8d.apps.googleusercontent.com"
 
 client_secret_file= os.path.join(pathlib.Path(__file__).parent, "client_secret.json")
 
 flow = Flow.from_client_secrets_file(
     client_secrets_file=client_secret_file,
     scopes=["https://www.googleapis.com/userinfo.profile", "https://googleapis.com/auth/userinfo.email", "openid"],
-    redirect_uri="http://127.0.0.1;5000/")'''
-
+    redirect_uri="http://127.0.0.1;5000/")
+'''
 #database Configuration
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Suyash@717'
+app.config['MYSQL_PASSWORD'] = '123456'
 app.config['MYSQL_DB'] = 'findmyjob'
 
 mysql = MySQL(app)
@@ -42,7 +42,7 @@ def login_is_required(function):
         else:
             return function
     return wrapper
-''' 
+'''
 
 @app.route("/")
 def home():
