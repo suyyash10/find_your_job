@@ -5,3 +5,4 @@ create table seeker_logindata(username varchar(20) primary key, password varchar
 create table company_logindata(username varchar(20) primary key, password varchar(300));
 create table company_basicdata(username varchar(20) primary key, company_name varchar(30), company_email varchar(50), city varchar(20));
 commit;
+test push
