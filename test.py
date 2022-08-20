@@ -1,4 +1,6 @@
-from cryptography.fernet import Fernet
+s = input(int("enter a number"))
+print(s)
+'''from cryptography.fernet import Fernet
 
 key = Fernet.generate_key()
 f = Fernet(key)
@@ -19,4 +21,4 @@ print(test2)
 #test2 = test1.encode()
 test2 = f.decrypt(test2)
 test2 = test2.decode()
-print(test2)
+print(test2)'''
