@@ -1,6 +1,5 @@
 from flask import *
 from flask_mysqldb import *
-from sqlalchemy import *
 from cryptography.fernet import Fernet
 '''from google_auth_oauthlib import *
 from google_auth_oauthlib.flow import *
