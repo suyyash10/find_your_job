@@ -7,4 +7,6 @@ installation Instructions:
 3. For required packages open a terminal with path as the directory where the repository is located.
 4. Execute the command "pip install -r requirements.txt"
 5. After installing all packages, to run app type "python app.py" for windows and "python3 app.py" for linux.
+6.Thank you
+
 
