@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find MY Job</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/job.css')}}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            Find Your Job
+        </div>
+        <div class="goback">
+            <div class="goback-logo">
+                <img src="https://img.icons8.com/material-outlined/24/FFFFFF/double-left.png" />
+            </div>
+            <div class="goback-text">
+                <a href="{{ url_for('home')}}">Go back</a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="left">
+            <div class="details">
+                <div class="name">
+                    <article>Your Name:-</article>
+                    <p>{{name}}</p>
+                </div>
+                <div class="email">
+                    <article>Email:-</article>
+                    <p>{{email}}</p>
+                </div>
+                <div class="pro">
+                    <article>Your Profession:-</article>
+                    <p>{{usrpost}}</p>
+                </div>
+            </div>
+            
+        </div>
+        <div class="right">
+            {% for job in alljobs %}
+            <div class="block1">
+                <div class="part1">
+                    <div class="company_name">
+                        {{job[0]}}
+                    </div>
+                    <div class="post">
+                        {{job[1]}}
+                    </div>
+                    <div class="job_des">
+                        {{job[2]}}
+                    </div>
+                </div>
+                <div class="part2">
+                    <div class="part21">
+                        {{job[3]}}<br>{{job[4]}}
+                    </div>
+                    <div class="part22">
+                        <p>
+                            Apply Now
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+
+    </main>
+</body>
+
+</html>

@@ -1,2 +1,2 @@
-s = int(input("enter a number"))
-print(s)
+for i in range(10):
+    print(i)

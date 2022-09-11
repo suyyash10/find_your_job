@@ -1,6 +1,7 @@
 from flask import *
 from flask_mysqldb import *
 from cryptography.fernet import Fernet
+from sqlalchemy import *
 '''from google_auth_oauthlib import *
 from google_auth_oauthlib.flow import *
 from oauthlib import *
@@ -41,6 +42,26 @@ def login_is_required(function):
         else:
             return function
     return wrapper
+
+
+#Class for Data Retrival form database
+class Jobs(mysql):
+    cursor = mysql.connection.cursor()
+    cursor.execute("select Company from jobs")
+    company = cursor.fetchall()
+    cursor.clear()
+    cursor.execute("select post from jobs")
+    post = cursor.fetchall()
+    cursor.clear()
+    cursor.execute("select Description from jobs")
+    description = cursor.fetchall()
+    cursor.clear()
+    cursor.execute("select Recruiter_Name from jobs")
+    reqName = cursor.fetchall()
+    cursor.clear()
+    cursor.execute("select Recruiter_Post from jobs")
+    reqPost = cursor.fetchall()
+    cursor.clear()
 '''
 
 @app.route("/")
@@ -64,7 +85,7 @@ def seeker_login():
             session['loggedIn']= True
             session['username']= details[0]
             cursor.close()
-            return redirect(url_for('home'))
+            return redirect(url_for('seeker_profile'))
         else:
             msg="Incorrrect Username/Password"
             cursor.close()
@@ -174,6 +195,34 @@ def company_login():
             cursor.close()
             return render_template("login.html", msg=msg)               
     return render_template("login.html")
+
+@app.route("/user_profile", methods=['GET', 'POST'])
+def seeker_profile():
+    username = session['username']
+    cursor = mysql.connection.cursor()
+    cursor.execute("select * from seeker_basicData where username=%s", (username,))
+    basicdata = cursor.fetchone()
+    name = basicdata[2]
+    email = basicdata[1]
+    usrpost = basicdata[4]
+    '''cursor.execute("select count(*) from jobs")
+    number = cursor.fetchone()
+    number = int(number[0])
+    cursor.execute("select Company from jobs")
+    company = cursor.fetchall()
+    cursor.execute("select post from jobs")
+    post = cursor.fetchall()
+    cursor.execute("select Description from jobs")
+    description = cursor.fetchall()
+    cursor.execute("select Recruiter_Name from jobs")
+    reqName = cursor.fetchall()
+    cursor.execute("select Recruiter_Post from jobs")
+    reqPost = cursor.fetchall()'''
+    cursor.execute("select * from jobs")
+    alljobs = cursor.fetchall()
+    cursor.close()
+
+    return render_template("seeker_profile.html",alljobs=alljobs, name=name, email=email, usrpost=usrpost)
 
 if __name__ == "__main__":
     app.run(debug=True)
