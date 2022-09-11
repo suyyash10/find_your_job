@@ -9,6 +9,7 @@ import os
 import pathlib'''
 import mysql.connector
 
+#Flask app configuration
 app = Flask(__name__)
 app.secret_key="mykey"
 
@@ -64,10 +65,12 @@ class Jobs(mysql):
     cursor.clear()
 '''
 
+#Home page
 @app.route("/")
 def home():
     return render_template("home.html")
 
+#Seeker Login function
 @app.route("/seeker_login" , methods=['GET', 'POST'])
 def seeker_login():
     if request.method == "POST":
@@ -91,6 +94,8 @@ def seeker_login():
             cursor.close()
             return render_template("login.html", msg=msg)               
     return render_template("login.html")
+
+#Seeker Google Login function
 '''
 @app.route("/seeker_googlelogin", methods=["GET", "POST"])
 def seeker_googlelogin():
@@ -108,7 +113,7 @@ def seeker_googlelogin():
     return render_template("seeker_googlelogin.html")
 '''
 
-
+#Seeker Signup function
 @app.route("/seeker_signup" , methods=['GET', 'POST'])
 def seeker_signup():
     if request.method == "POST":
@@ -132,6 +137,7 @@ def seeker_signup():
         cursor.close()
     return render_template("seeker_signup.html")
 
+#Seeker Details Entries function
 @app.route("/seeker_details" , methods=['GET', 'POST'])
 def seeker_details():
     if request.method == "POST":
@@ -148,6 +154,7 @@ def seeker_details():
         return redirect('seeker_login')
     return render_template("seeker_details.html")
 
+#Company Signup function
 @app.route("/company_signup", methods=['GET', 'POST'])
 def company_signup():
     if request.method=="POST":
@@ -172,6 +179,7 @@ def company_signup():
         cursor.close()
     return render_template("company_signup.html")
 
+#Company Login function
 @app.route("/company_login", methods=['GET', 'POST'])
 def company_login():
     if request.method == "POST":
@@ -196,6 +204,7 @@ def company_login():
             return render_template("login.html", msg=msg)               
     return render_template("login.html")
 
+#Seeker Profile function
 @app.route("/user_profile", methods=['GET', 'POST'])
 def seeker_profile():
     username = session['username']
