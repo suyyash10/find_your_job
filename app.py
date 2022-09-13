@@ -9,6 +9,7 @@ import os
 import pathlib'''
 import mysql.connector
 
+#Flask app configuration
 app = Flask(__name__)
 app.secret_key="mykey"
 
@@ -64,10 +65,12 @@ class Jobs(mysql):
     cursor.clear()
 '''
 
+#Home page
 @app.route("/")
 def home():
     return render_template("home.html")
 
+#Seeker Login function
 @app.route("/seeker_login" , methods=['GET', 'POST'])
 def seeker_login():
     if request.method == "POST":
@@ -91,6 +94,8 @@ def seeker_login():
             cursor.close()
             return render_template("login.html", msg=msg)               
     return render_template("login.html")
+
+#Seeker Google Login function
 '''
 @app.route("/seeker_googlelogin", methods=["GET", "POST"])
 def seeker_googlelogin():
@@ -99,7 +104,7 @@ def seeker_googlelogin():
         username = details['username']
         password = details['password']
         cursor = mysql.connection.cursor()
-        cursor.execute("select * from seeker_logindata where username=%s", (username,))
+        cursor.execute("select * from seeker_loginData where username=%s", (username,))
         test = cursor.fetchone()
         if not test:
             authorization_url, state= flow.authorization_url()
@@ -108,7 +113,7 @@ def seeker_googlelogin():
     return render_template("seeker_googlelogin.html")
 '''
 
-
+#Seeker Signup function
 @app.route("/seeker_signup" , methods=['GET', 'POST'])
 def seeker_signup():
     if request.method == "POST":
@@ -123,8 +128,8 @@ def seeker_signup():
         cursor.execute("select username from seeker_loginData where username = %s", (username,))
         test = cursor.fetchone()
         if not test:
-            cursor.execute("insert into seeker_basicdata(username,email) values(%s, %s)", (username, user_email))
-            cursor.execute("insert into seeker_logindata values(%s, %s)", (username, user_password))
+            cursor.execute("insert into seeker_basicData(username,email) values(%s, %s)", (username, user_email))
+            cursor.execute("insert into seeker_loginData values(%s, %s)", (username, user_password))
             mysql.connection.commit()
             cursor.close()
             session['username'] = username
@@ -132,6 +137,7 @@ def seeker_signup():
         cursor.close()
     return render_template("seeker_signup.html")
 
+#Seeker Details Entries function
 @app.route("/seeker_details" , methods=['GET', 'POST'])
 def seeker_details():
     if request.method == "POST":
@@ -142,12 +148,13 @@ def seeker_details():
         experience = details['experience']
         username = session['username']
         cursor = mysql.connection.cursor()
-        cursor.execute("update seeker_basicdata set full_name=%s, current_company=%s, current_designation=%s, job_experience=%s where username=%s", (name, company, designation, experience, username))
+        cursor.execute("update seeker_basicData set full_name=%s, current_company=%s, current_designation=%s, job_experience=%s where username=%s", (name, company, designation, experience, username))
         mysql.connection.commit()
         cursor.close()
         return redirect('seeker_login')
     return render_template("seeker_details.html")
 
+#Company Signup function
 @app.route("/company_signup", methods=['GET', 'POST'])
 def company_signup():
     if request.method=="POST":
@@ -161,17 +168,18 @@ def company_signup():
         password = f.encrypt(password)
         password = password.decode()
         cursor =mysql.connection.cursor()
-        cursor.execute("select * from company_logindata where username = %s", (username,))
+        cursor.execute("select * from company_loginData where username = %s", (username,))
         test = cursor.fetchone()
         if not test:
-            cursor.execute("insert into company_basicdata values(%s, %s, %s, %s)", (username, companyName, companyEmail, companyCity))
-            cursor.execute("insert into company_logindata values(%s, %s)", (username, password))
+            cursor.execute("insert into company_basicData values(%s, %s, %s, %s)", (username, companyName, companyEmail, companyCity))
+            cursor.execute("insert into company_loginData values(%s, %s)", (username, password))
             mysql.connection.commit()
             cursor.close()
             return redirect('company_login')
         cursor.close()
     return render_template("company_signup.html")
 
+#Company Login function
 @app.route("/company_login", methods=['GET', 'POST'])
 def company_login():
     if request.method == "POST":
@@ -196,6 +204,7 @@ def company_login():
             return render_template("login.html", msg=msg)               
     return render_template("login.html")
 
+#Seeker Profile function
 @app.route("/user_profile", methods=['GET', 'POST'])
 def seeker_profile():
     username = session['username']

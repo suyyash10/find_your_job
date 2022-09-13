@@ -1,11 +1,12 @@
-*{
+* {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
     font-family: "Libre Baskerville";
 
 }
-nav{
+
+nav {
     background-color: black;
     color: white;
     width: 100vw;
@@ -14,14 +15,17 @@ nav{
     align-items: center;
     justify-content: space-between;
 }
-.logo{
+
+.logo {
     padding-left: 20px;
     font-size: 3vw;
 }
-.lists{
+
+.lists {
     padding-right: 28px;
 }
-.lists li{
+
+.lists li {
     list-style: none;
     display: inline-block;
     font-size: 2vw;
@@ -29,122 +33,146 @@ nav{
     cursor: pointer;
     transition: width 0.7s ease-out;
 }
-.lists a{
+
+.lists a {
     color: white;
     text-decoration: none;
 }
-.lists li:hover{
+
+.lists li:hover {
     font-size: 2.5vw;
 }
-.hum{
+
+.hum {
     display: none;
 }
-.main-img{
+
+.main-img {
     width: 99vw;
     height: 90vh;
     background-image: url("/static/img/job.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
-.about{
+
+.about {
     margin: 20px 0px;
 }
-.about .heading{
+
+.about .heading {
     font-size: 4vw;
     text-align: center;
 }
-.about-sec1 , .about-sec2{
+
+.about-sec1,
+.about-sec2 {
     width: 90vw;
     height: 47vh;
     margin: 30px auto;
     display: flex;
     justify-content: space-between;
 }
-.about-img{
+
+.about-img {
     width: 40%;
     height: 100%;
     overflow: hidden;
 }
-.about-info{
+
+.about-info {
     width: 50%;
     font-size: 2vw;
-    text-align: center ;
+    text-align: center;
     padding: 35px 10px;
     position: relative;
     left: 100px;
     opacity: 0;
-    transition:  left 2s , opacity 2s;
+    transition: left 2s, opacity 2s;
 }
-.showit .about-info{
+
+.showit .about-info {
     left: 0px;
     right: 0px;
     opacity: 1;
 }
-footer{
+
+footer {
     width: 100vw;
     height: 50vh;
     background-color: black;
     background-image: url("/static/img/wave.svg");
     color: white;
     display: flex;
+
     justify-content: space-around;
+    overflow-y: hidden;
 }
-.footer-sec1{
+
+.footer-sec1 {
     width: 30%;
     height: 110%;
 }
-.heading-footer h1{
+
+.heading-footer h1 {
     padding: 20px 30px;
 }
-.heading-footer p{
-    padding-left:30px;
+
+.heading-footer p {
+    padding-left: 30px;
 }
-.input{
+
+.input {
     width: 70%;
     height: 10%;
     padding: 2px;
     margin-left: 30px;
     margin-top: 10px;
     border-radius: 9px;
-    border:1px solid black
-    
+    border: 1px solid black
 }
-.icons ul li{
+
+.icons ul li {
     display: inline-block;
     margin: 30px 15px;
     cursor: pointer;
 }
-.footer-sec2{
+
+.footer-sec2 {
     width: 30%;
     height: 90%;
 }
-.footer-sec3{
+
+.footer-sec3 {
     width: 30%;
     height: 90%;
 }
-.footer-sec3 ul li{
+
+.footer-sec3 ul li {
     list-style: none;
-    padding-left:  30px;
+    padding-left: 30px;
     font-size: 200%;
     cursor: pointer;
 }
 
 
 @media screen and (max-width:800px) {
-    .nav{
+    .nav {
         position: relative;
     }
-    .hum{
+
+    .hum {
         display: block;
         float: right;
         padding-right: 20px;
-        
+
     }
-    .logo{
+
+    .logo {
         font-size: 9vw;
         text-align: center;
     }
-    .lists{
+
+    .lists {
         position: absolute;
         background-color: white;
         color: black;
@@ -154,37 +182,49 @@ footer{
         transform: skew(90deg);
         transition: transform .9s ease-in-out;
     }
-    .lists li{
+
+    .lists li {
         display: block;
         font-size: 5vw;
-        margin: 25px 0px; 
+        margin: 25px 0px;
         color: black;
     }
-    .skew-open .lists{
+
+    .skew-open .lists {
         transform: skew(0deg);
     }
-    .main-img{
+
+    .main-img {
         height: 50vh;
-        margin-top:0px ;
+        margin-top: 0px;
     }
-    .about .heading{
+
+    .about .heading {
         font-size: 4vh;
         text-align: center;
     }
-    .about-sec1 , .about-sec2{
-        display: block;  
+
+    .about-sec1,
+    .about-sec2 {
+        display: block;
     }
-    .about-img{
+
+    .about-img {
         width: 100%;
         height: auto;
         overflow: hidden;
     }
-    .about-info{
+
+    .about-info {
         width: 100%;
         font-size: 2vh;
         padding-top: 10px;
     }
 
 
-    
+    * {
+        background-color: black;
+    }
+
+
 }
