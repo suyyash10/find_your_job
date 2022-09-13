@@ -122,3 +122,8 @@ header {
   display: block;
   top: 0vh;
 }
+@media screen and (max-width:"800px") {
+    *{
+      background-color:black;
+    }
+}
