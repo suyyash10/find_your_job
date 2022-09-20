@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    font-family: 'Edu NSW ACT Foundation', cursive;
+    font-family: "Libre Baskerville";
 
 }
 nav{
@@ -90,7 +90,6 @@ nav{
     position: relative;
     left: 100px;
     opacity: 0;
-    transition:  left 2s , opacity 2s;
 }
 .showit .about-info{
     left: 0px;

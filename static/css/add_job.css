@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Libre Baskerville";
+}
+
+header {
+    width: 100vw;
+    height: 15vh;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    position: relative;
+    z-index: 1000;
+}
+
+.logo {
+    padding: 15px;
+    font-size: 3vw;
+}
+
+.goback {
+    padding: 15px;
+    font-size: 3vw;
+    display: flex;
+}
+
+.goback-text a {
+    color: white;
+    text-decoration: none;
+}
+
+.left {
+    position: fixed;
+    top: auto;
+    left: 0;
+    width: 30vw;
+    height: 100vh;
+    background-color: rgb(224, 224, 224);
+}
+
+.right {
+    background-color: white;
+    width: 70vw;
+    float: right;
+     padding-left: 20px; 
+    border: 2px solid grey;
+    border-radius: 12px;
+}

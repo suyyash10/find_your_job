@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AddJob</title>
+    <link rel="stylesheet" href="/static/css/add_job.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="logo">Find Your Job</div>
+        <div class="goback">
+            <div class="goback-logo">
+                <img src="https://img.icons8.com/material-outlined/24/FFFFFF/double-left.png" />
+            </div>
+            <div class="goback-text">
+                <a href="home.html">Go back</a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="left">
+            <div class="details">
+                <div class="name">
+                    <article>Your Name:-</article>
+                    <p>Pratik Agnihotri</p>
+                </div>
+                <div class="email">
+                    <article>Email:-</article>
+                    <p>Pratikagnihotri1234@gmail.com</p>
+                </div>
+                <div class="pro">
+                    <article>Your Profession:-</article>
+                    <p>Web developer</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <form>
+        <div class="right">
+            <label for="cname" class="details">Company Name:</label>
+            <input type="text" class="txt" id="cname" name="compname" placeholder="Enter Company Name">
+            <br>
+            <label for="cemail" class="details">Company Email:</label>
+            <input type="email" class="txt" id="cemail" name="compemail" placeholder="example@domain.com">
+            <br>
+            <label for="descrip" class="details">Job Description:</label>
+            <input type="email" class="txt" id="descrip" name="description" value="#">
+            <br>
+            <label for="keyword" class="details">Keyword:</label>
+            <input type="text" class="txt" id="keyword" name="keyword" placeholder=" Enter Skills or Designation">
+            <br>
+            <label for="loc" class="details">Location:</label>
+            <input type="text" class="txt" id="loc" name="location" placeholder="Enter Address">
+            <br>
+            <label for="we" class="details">Work Experience:</label>
+            <input type="number" class="txt" id="we" name="workexp" placeholder="Enter In Months">
+            <label for="sal" class="details"> Annual Salary:</label>
+            <input type="text" class="txt" id="sal" name="salary" placeholder="Enter Annual Salary">
+            <br>
+            <label for="indus" class="details">Industry:</label>
+            <input type="text" class="txt" id="indus" name="industry" placeholder="Enter Related Industry">
+            <br>
+            <div class="btn">
+                <input type="reset" placeholder="Reset">
+                <input type="submit" placeholder="Create">
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
