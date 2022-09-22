@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AddJob</title>
-    <link rel="stylesheet" href="/static/css/add_job.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/add_job.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
                 <img src="https://img.icons8.com/material-outlined/24/FFFFFF/double-left.png" />
             </div>
             <div class="goback-text">
-                <a href="home.html">Go back</a>
+                <a href="{{url_for('home')}}">Go back</a>
             </div>
         </div>
     </header>
@@ -42,7 +42,7 @@
             </div>
         </div>
     </main>
-    <form>
+    <form class ="form" method="post">
         <div class="right">
             <label for="cname" class="details">Company Name:</label>
             <input type="text" class="txt" id="cname" name="compname" placeholder="Enter Company Name">

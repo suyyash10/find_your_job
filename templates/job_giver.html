@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>I am the King</title>
-    <link rel="stylesheet" href="/css/job_giver.css" />
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/job_giver.css')}}" />
 </head>
 
 <body>
@@ -17,7 +17,7 @@
                 <img src="https://img.icons8.com/material-outlined/24/FFFFFF/double-left.png" />
             </div>
             <div class="goback-text">
-                <a href="home.html">Go back</a>
+                <a href="{{url_for('home')}}">Go back</a>
             </div>
         </div>
     </header>
@@ -25,21 +25,21 @@
         <div class="left">
             <div class="details">
                 <div class="name">
-                    <article>Your Name:-</article>
-                    <p>Pratik Agnihotri</p>
+                    <article>Company Name:-</article>
+                    <p>{{data[1]}}</p>
                 </div>
                 <div class="email">
                     <article>Email:-</article>
-                    <p>Pratikagnihotri1234@gmail.com</p>
+                    <p>{{data[2]}}</p>
                 </div>
                 <div class="pro">
-                    <article>Your Profession:-</article>
-                    <p>Web developer</p>
+                    <article>Location:-</article>
+                    <p>{{data[3]}}</p>
                 </div>
             </div>
         </div>
         <div class="right">
-            <div class="buttons">
+            <div class="buttons" >
                 <p>
                     Add Opening
                 </p>
@@ -50,6 +50,17 @@
                     <img src="https://img.icons8.com/material-sharp/24/000000/search.png"/>
                 </form>
             </div>
+            {% for job in alljobs %}
+            <div class="block1">
+                <div class="part1">
+                    <p>Web Developer</p>
+                </div>
+                <div class="part2">
+                    <p>Check Applications</p>
+                    <p>Delete</p>
+                </div>
+            </div>
+            {% endfor %}
             <div class="block1">
                 <div class="part1">
                     <p>Web Developer</p>
@@ -106,7 +117,7 @@
             </div>
         </div>
     </main>
-    <script src="\js\form.js"></script>
+    <script src="{{url_for('static', filename = 'js/form.js')}}"></script>
 </body>
 
 </html>

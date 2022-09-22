@@ -8,6 +8,7 @@ from oauthlib import *
 import os
 import pathlib'''
 import mysql.connector
+import random
 
 #Flask app configuration
 app = Flask(__name__)
@@ -64,6 +65,18 @@ class Jobs(mysql):
     reqPost = cursor.fetchall()
     cursor.clear()
 '''
+
+#function to check if a table exist in the database
+def check_table(name):
+    cursor = mysql.connection.cursor()
+    #exist = cursor.execute("select * from %s", (tname,))
+    #exist = cursor.fetchone()[0]
+    cursor.execute("show tables")
+    test = cursor.fetchall()
+    cursor.close()
+    if name in test:
+        return 1
+    return 0
 
 #Home page
 @app.route("/")
@@ -173,6 +186,8 @@ def company_signup():
         if not test:
             cursor.execute("insert into company_basicData values(%s, %s, %s, %s)", (username, companyName, companyEmail, companyCity))
             cursor.execute("insert into company_loginData values(%s, %s)", (username, password))
+            query = "create table "+username+" (jobID int primary key, post varchar(50))"
+            cursor.execute(query)
             mysql.connection.commit()
             cursor.close()
             return redirect('company_login')
@@ -197,7 +212,7 @@ def company_login():
             session['loggedIn']= True
             session['username']= details[0]
             cursor.close()
-            return redirect(url_for('home'))
+            return redirect(url_for('recruiter_profile'))
         else:
             msg="Incorrrect Username/Password"
             cursor.close()
@@ -230,8 +245,38 @@ def seeker_profile():
     cursor.execute("select * from jobs")
     alljobs = cursor.fetchall()
     cursor.close()
-
     return render_template("seeker_profile.html",alljobs=alljobs, name=name, email=email, usrpost=usrpost)
+
+#Recruiter Profile
+@app.route("/recruiter_profile", methods=['GET', 'POST'])
+def recruiter_profile():
+    cursor = mysql.connection.cursor()
+    query = "select * from "+session['username']
+    cursor.execute(query)
+    alljobs = cursor.fetchall()
+    cursor.execute("select * from company_basicData where username = %s", (session['username'],))
+    data = cursor.fetchall()
+    cursor.close()
+    return render_template("job_giver.html", alljobs=alljobs, data=data)
+
+#Add Job
+@app.route("/add_job", methods=['GET', 'POST'])
+def add_job():
+    if request.method == "POST":
+        cursor = mysql.connection.cursor()
+        n=1
+        while n!=1:
+            num = random.randint(0, 999999999)
+            cursor.execute("select * from jobs where jobID %s", (num, ))
+            test=cursor.fetchone()
+            if test:
+                n=1
+            else:
+                n=0
+        query = "create table "+num+" ()"
+
+    return render_template("add_job.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
