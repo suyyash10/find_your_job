@@ -273,8 +273,22 @@ def add_job():
                 n=1
             else:
                 n=0
-        query = "create table "+num+" ()"
-
+        query = "create table "+num+" (emp_username int primary key, emp_name varchar(40), emp_experience int)"
+        cursor.execute(query)
+        details= request.form
+        description = details['description']
+        post = details['keyword']
+        exp = details['experience']
+        salary = details['salary']
+        industry = details['industry']
+        location = details['location']
+        cursor.execute("select company_name from company_basciData where username = %s", session['username'])
+        name = cursor.fetchone()
+        name = name[1]
+        cursor.execute("insert into jobs values(%s, %s, %s, %s, %s, %s, %s)", (num, post, description, name, salary, location, industry,))
+        cursor.commit()
+        cursor.close()
+        return redirect("recruiter_profile")
     return render_template("add_job.html")
 
 
