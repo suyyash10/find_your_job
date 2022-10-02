@@ -29,15 +29,15 @@
     <main>
         <form class="form"  method="POST" action="">
             <p>Username</p>
-            <input class="inputs" name="username" id="" placeholder="Enter Username"><br>
+            <input class="inputs" name="username" id="" placeholder="Enter Username" required><br>
             <p>Email</p>
-            <input class="inputs" type="email" name="user_email" id="" placeholder="Enter Email"><br>
+            <input class="inputs" type="email" name="user_email" id="" placeholder="Enter Email" required><br>
             <p>Password</p>
-            <input class="inputs" type="password" name="user_password" id="" placeholder="Enter Password"><br>
+            <input class="inputs" type="password" name="user_password1" id="" placeholder="Enter Password" required><br>
             <p>
                Confirm Password
             </p>
-            <input class="inputs" type="password" placeholder="Re-enter Password"><br>
+            <input class="inputs" type="password" name="user_password2" placeholder="Re-enter Password" required><br>
             <button>Sign Up</button><br>
             <a href="{{url_for('seeker_login')}}">Already Have an account?</a>
         </form>

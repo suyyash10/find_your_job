@@ -31,7 +31,7 @@ flow = Flow.from_client_secrets_file(
 #database Configuration
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '123456'
+app.config['MYSQL_PASSWORD'] = 'Suyash@717'
 app.config['MYSQL_DB'] = 'findmyjob'
 
 mysql = MySQL(app)
@@ -103,9 +103,10 @@ def seeker_login():
             cursor.close()
             return redirect(url_for('seeker_profile'))
         else:
+            
             msg="Incorrrect Username/Password"
             cursor.close()
-            return render_template("login.html", msg=msg)               
+            return render_template("login.html", msg=msg )               
     return render_template("login.html")
 
 #Seeker Google Login function
@@ -133,6 +134,7 @@ def seeker_signup():
         userDetails = request.form
         username = userDetails['username']
         user_email = userDetails['user_email']
+        user_password = userDetails['user_password']
         user_password = userDetails['user_password']
         user_password = user_password.encode()
         user_password = f.encrypt(user_password)
