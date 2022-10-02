@@ -29,15 +29,15 @@
             <div class="details">
                 <div class="name">
                     <article>Your Name:-</article>
-                    <p>Pratik Agnihotri</p>
+                    <p>{{name}}</p>
                 </div>
                 <div class="email">
                     <article>Email:-</article>
-                    <p>Pratikagnihotri1234@gmail.com</p>
+                    <p>{{email}}</p>
                 </div>
                 <div class="pro">
                     <article>Your Profession:-</article>
-                    <p>Web developer</p>
+                    <p>{{usrpost}}</p>
                 </div>
             </div>
         </div>
@@ -45,27 +45,27 @@
     <form class ="form" method="post">
         <div class="right">
             <label for="cname" class="details">Company Name:</label>
-            <input type="text" class="txt" id="cname" name="compname" placeholder="Enter Company Name">
+            <input type="text" class="txt" id="cname" name="compname" placeholder="Enter Company Name" required>
             <br>
             <label for="cemail" class="details">Company Email:</label>
-            <input type="email" class="txt" id="cemail" name="compemail" placeholder="example@domain.com">
+            <input type="email" class="txt" id="cemail" name="compemail" placeholder="example@domain.com" required>
             <br>
             <label for="descrip" class="details">Job Description:</label>
-            <input type="email" class="txt" id="descrip" name="description" value="#">
+            <input type="text" class="txt" id="descrip" name="description" value="#" required>
             <br>
             <label for="keyword" class="details">Keyword:</label>
-            <input type="text" class="txt" id="keyword" name="keyword" placeholder=" Enter Skills or Designation">
+            <input type="text" class="txt" id="keyword" name="keyword" placeholder=" Enter Skills or Designation" required>
             <br>
             <label for="loc" class="details">Location:</label>
-            <input type="text" class="txt" id="loc" name="location" placeholder="Enter Address">
+            <input type="text" class="txt" id="loc" name="location" placeholder="Enter Address" required>
             <br>
             <label for="we" class="details">Work Experience:</label>
-            <input type="number" class="txt" id="we" name="workexp" placeholder="Enter In Months">
+            <input type="number" class="txt" id="we" name="workexp" placeholder="Enter In Months" required>
             <label for="sal" class="details"> Annual Salary:</label>
-            <input type="text" class="txt" id="sal" name="salary" placeholder="Enter Annual Salary">
+            <input type="text" class="txt" id="sal" name="salary" placeholder="Enter Annual Salary" required>
             <br>
             <label for="indus" class="details">Industry:</label>
-            <input type="text" class="txt" id="indus" name="industry" placeholder="Enter Related Industry">
+            <input type="text" class="txt" id="indus" name="industry" placeholder="Enter Related Industry" required>
             <br>
             <div class="btn">
                 <input type="reset" placeholder="Reset">
