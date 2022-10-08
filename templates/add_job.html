@@ -20,7 +20,7 @@
                 <img src="https://img.icons8.com/material-outlined/24/FFFFFF/double-left.png" />
             </div>
             <div class="goback-text">
-                <a href="{{url_for('home')}}">Go back</a>
+                <a href="#">Go back</a>
             </div>
         </div>
     </header>
@@ -29,50 +29,59 @@
             <div class="details">
                 <div class="name">
                     <article>Your Name:-</article>
-                    <p>{{name}}</p>
+                    <p>Pratik Agnihotri</p>
                 </div>
                 <div class="email">
                     <article>Email:-</article>
-                    <p>{{email}}</p>
+                    <p>pratikagnihotri1234@gmail.com</p>
                 </div>
                 <div class="pro">
-                    <article>Your Profession:-</article>
-                    <p>{{usrpost}}</p>
+                    <article>Your Company Name:-</article>
+                    <p>Meta</p>
                 </div>
             </div>
         </div>
     </main>
-    <form class ="form" method="post">
-        <div class="right">
-            <label for="cname" class="details">Company Name:</label>
+    <div class="right">
+        <form class="form" method="post">
+            <label for="cname" class="right_form">Company Name:</label>
             <input type="text" class="txt" id="cname" name="compname" placeholder="Enter Company Name" required>
-            <br>
-            <label for="cemail" class="details">Company Email:</label>
+
+            <label for="cemail" class="right_form">Company Email:</label>
             <input type="email" class="txt" id="cemail" name="compemail" placeholder="example@domain.com" required>
             <br>
-            <label for="descrip" class="details">Job Description:</label>
-            <input type="text" class="txt" id="descrip" name="description" value="#" required>
+
+            <label for="descrip" class="right_form">Job Description:</label>
+            <input type="text" class="txt" id="descrip" name="description" value="" required>
+
+            <label for="keyword" class="right_form">Keyword:</label>
+            <input type="text" class="txt" id="keyword" name="keyword" placeholder=" Enter Skills or Designation"
+                required>
+
             <br>
-            <label for="keyword" class="details">Keyword:</label>
-            <input type="text" class="txt" id="keyword" name="keyword" placeholder=" Enter Skills or Designation" required>
-            <br>
-            <label for="loc" class="details">Location:</label>
+
+            <label for="loc" class="right_form">Location:</label>
             <input type="text" class="txt" id="loc" name="location" placeholder="Enter Address" required>
-            <br>
-            <label for="we" class="details">Work Experience:</label>
+            
+            <label for="we" class="right_form">Work Experience:</label>
             <input type="number" class="txt" id="we" name="workexp" placeholder="Enter In Months" required>
-            <label for="sal" class="details"> Annual Salary:</label>
+
+            <br>
+
+            <label for="sal" class="right_form"> Annual Salary:</label>
             <input type="text" class="txt" id="sal" name="salary" placeholder="Enter Annual Salary" required>
-            <br>
-            <label for="indus" class="details">Industry:</label>
+
+            <label for="indus" class="right_form">Industry:</label>
             <input type="text" class="txt" id="indus" name="industry" placeholder="Enter Related Industry" required>
+
             <br>
+
             <div class="btn">
                 <input type="reset" placeholder="Reset">
                 <input type="submit" placeholder="Create">
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </body>
 
 </html>
