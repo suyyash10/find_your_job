@@ -1,8 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: "Libre Baskerville";
-    overflow-x: hidden;
+    font-family: 'Edu NSW ACT Foundation', cursive;
 }
 header{
     width: 100vw;
@@ -70,13 +69,30 @@ header{
 }
 .form p{
     color: white;
-    font-size: 3vw;
+    font-size: 2.5vw;
 }
 .form button{
     width: 50%;
     height: 10vh;
-    margin: 20px 0px;
     border-radius: 12px;
     font-size: 3vw;
     cursor: pointer;
+}
+#black{
+    width: 80vw;
+}
+#black2{
+    width: 50%;
+}
+#black3{
+    text-align:left;
+}
+#black4{
+    width: 50%;
+    margin: 20px 25%;
+}
+#black5{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
