@@ -271,9 +271,9 @@ def add_job():
             cursor.execute("select * from jobs where jobID %s", (num, ))
             test=cursor.fetchone()
             if test:
-                n=1
+                continue
             else:
-                n=0
+                break
         query = "create table "+num+" (emp_username int primary key, emp_name varchar(40), emp_experience int)"
         cursor.execute(query)
         details= request.form
