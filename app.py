@@ -203,11 +203,11 @@ def company_login():
         username = loginDetails['username']
         password = loginDetails['password']
         cursor = mysql.connection.cursor()
-        cursor.execute("select * from company_loginData where username=%s and password=%s", (username, password,))
+        cursor.execute("select * from company_loginData where username=%s", (username,))
         details = cursor.fetchone()
         test = details[1]
         test = test.encode()
-        test = f.decrypt()
+        test = f.decrypt(test)
         test = test.decode()
         if details and test == password:
             session['loggedIn']= True
@@ -230,6 +230,7 @@ def seeker_profile():
     name = basicdata[2]
     email = basicdata[1]
     usrpost = basicdata[4]
+    education = basicdata[5]
     '''cursor.execute("select count(*) from jobs")
     number = cursor.fetchone()
     number = int(number[0])
@@ -245,6 +246,12 @@ def seeker_profile():
     reqPost = cursor.fetchall()'''
     cursor.execute("select * from jobs")
     alljobs = cursor.fetchall()
+    if request.method == "POST":
+        id = request.form["action"]
+        id = str(id)
+        tablename = "job"+id
+        cursor.execute("insert into %s values(%s, %s, %s", (tablename, name, email, education,))
+
     cursor.close()
     return render_template("seeker_profile.html",alljobs=alljobs, name=name, email=email, usrpost=usrpost)
 
@@ -265,27 +272,27 @@ def recruiter_profile():
 def add_job():
     if request.method == "POST":
         cursor = mysql.connection.cursor()
-        n=1
-        while n!=1:
-            num = random.randint(0, 999999999)
-            cursor.execute("select * from jobs where jobID %s", (num, ))
+        while true:
+            num = random.randint(100000, 999999)
+            cursor.execute("select * from jobs where jobID = %s", (num, ))
             test=cursor.fetchone()
             if test:
                 continue
             else:
                 break
-        query = "create table "+num+" (emp_username int primary key, emp_name varchar(40), emp_experience int)"
+        num = str(num)
+        query = "create table job"+num+" (emp_username int primary key, emp_name varchar(40), emp_education varchar(50))"
         cursor.execute(query)
         details= request.form
         description = details['description']
         post = details['keyword']
-        exp = details['experience']
+        #exp = details['experience']
         salary = details['salary']
         industry = details['industry']
         location = details['location']
         cursor.execute("select company_name from company_basciData where username = %s", session['username'])
         name = cursor.fetchone()
-        name = name[1]
+        name = name[0]
         cursor.execute("insert into jobs values(%s, %s, %s, %s, %s, %s, %s)", (num, post, description, name, salary, location, industry,))
         cursor.commit()
         cursor.close()

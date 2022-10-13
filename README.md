@@ -19,7 +19,7 @@ Installation Instructions For Linux:
 6. Open a new terminal and type command "cd find_your_job" and type command "sudo apt update".
 7. Install mysql with "sudo apt install mysql-server"
 8. Run mysql with "sudo mysql -u root -p" and type your linux password.
-9. Run this query in mysql to avoid complecations in database connectivity "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'new-password';"
+9. Run this query in mysql to avoid complecations in database connectivity "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '(new-password)';"
 10. Now exit mysql and run this command "sudo service mysql restart"
 11. Now run this command for flask_mysqldb package in python "sudo apt-get install libmysqlclient-dev"
 12. Install the required python packages with command "pip install -r requirements.txt"

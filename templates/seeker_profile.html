@@ -45,6 +45,7 @@
             
         </div>
         <div class="right">
+            <form action="" method="post">
             {% for job in alljobs %}
             <div class="block1">
                 <div class="part1">
@@ -62,7 +63,7 @@
                     <div class="part21">
                         {{job[4]}}<br>{{job[5]}}
                     </div>
-                    <div class="part22">
+                    <div class="part22" type="submit" name="action" value="{{job[0]}}">
                         <p>
                             Apply Now
                         </p>
@@ -70,6 +71,7 @@
                 </div>
             </div>
             {% endfor %}
+            </form>
         </div>
 
 
