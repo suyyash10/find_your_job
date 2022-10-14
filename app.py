@@ -225,7 +225,9 @@ def seeker_profile():
         id = request.form["action"]
         id = str(id)
         tablename = "job"+id
-        cursor.execute("insert into %s values(%s, %s, %s)", (tablename, name, email, education))
+        query = "insert into "+tablename
+        cursor.execute(query+" values(%s, %s, %s)", (name, email, education))
+        mysql.connection.commit()
     cursor.close()
     return render_template("seeker_profile.html",alljobs=alljobs, name=name, email=email, usrpost=usrpost)
 
@@ -239,10 +241,11 @@ def recruiter_profile():
     cursor.execute("select * from jobs where Company=%s", (comp,))
     alljobs = cursor.fetchall()
     cursor.execute("select * from company_basicData where username = %s", (session['username'],))
-    data = cursor.fetchall()
+    data = cursor.fetchone()
     if request.method == "POST":
         jobId = request.form["action"]
         session["jobId"]=jobId
+        return redirect(url_for('screening'))
         cursor.close()
     cursor.close()
     return render_template("job_giver.html", alljobs=alljobs, data=data)
@@ -265,9 +268,8 @@ def add_job():
                 continue
             else:
                 break
-        num1 = num
         num = str(num)
-        query = "create table job"+num+" (emp_username int primary key, emp_name varchar(40), emp_education varchar(50))"
+        query = "create table job"+num+" (emp_name varchar(100) primary key, emp_email varchar(50), emp_education varchar(50))"
         cursor.execute(query)
         details= request.form
         description = details['description']
@@ -287,7 +289,13 @@ def add_job():
 #Screening
 @app.route("/screening", methods=["GET", "POST"])
 def screening():
-    return render_template("screening.html")
+    cursor = mysql.connection.cursor()
+    jobId = session['jobId']
+    tablename = "job"+jobId
+    query = "select * from "+tablename
+    cursor.execute(query)
+    allreq = cursor.fetchall()
+    return render_template("screening.html", allreq = allreq)
 
 
 if __name__ == "__main__":

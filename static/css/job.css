@@ -117,3 +117,8 @@ header{
     border-radius: 12px;
     cursor: pointer;
 }
+.somewhat{
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 75%;
+}

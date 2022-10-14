@@ -60,60 +60,15 @@
                     <p>{{job[1]}}</p>
                 </div>
                 <div class="hidden">
-                    <input hidden type="text" value="{{job[0]}}">
+                    <input hidden type="text" name="action" value="{{job[0]}}">
                 </div>
                 <div class="part2">
-                    <input class="somewhat" type="submit" name="action"  value="Check Applications">
+                    <input class="somewhat" type="submit"  value="Check Applications">
                     <p>Delete</p>
                 </div>
             </div>
             {% endfor %}
         </form>
-            <!-- <div class="block1">
-                <div class="part1">
-                    <p>Web Developer</p>
-                </div>
-                <div class="part2">
-                    <p>Check Applications</p>
-                    <p>Delete</p>
-                </div>
-            </div>
-            <div class="block1">
-                <div class="part1">
-                    <p>Web Developer</p>
-                </div>
-                <div class="part2">
-                    <p>Check Applications</p>
-                    <p>Delete</p>
-                </div>
-            </div>
-            <div class="block1">
-                <div class="part1">
-                    <p>Web Developer</p>
-                </div>
-                <div class="part2">
-                    <p>Check Applications</p>
-                    <p>Delete</p>
-                </div>
-            </div>
-            <div class="block1">
-                <div class="part1">
-                    <p>Web Developer</p>
-                </div>
-                <div class="part2">
-                    <p>Check Applications</p>
-                    <p>Delete</p>
-                </div>
-            </div>
-            <div class="block1">
-                <div class="part1">
-                    <p>Web Developer</p>
-                </div>
-                <div class="part2">
-                    <p>Check Applications</p>
-                    <p>Delete</p>
-                </div>
-            </div> -->
         </div>
     </main>
     <script src="{{url_for('static', filename = 'js/form.js')}}"></script>

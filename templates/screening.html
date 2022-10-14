@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Srceening page</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/job.css')}}">
+    <style>
+        #blackk {
+            height: 40vh;
+        }
+
+        #something {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            Find Your Job
+        </div>
+        <div class="goback">
+            <div class="goback-logo">
+                <img src="https://img.icons8.com/material-outlined/24/FFFFFF/double-left.png" />
+            </div>
+            <div class="goback-text">
+                <a href="home.html">Go back</a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="left">
+            <div class="details">
+                <div class="name">
+                    <article>Your Name:-</article>
+                    <p>Pratik Agnihotri</p>
+                </div>
+                <div class="email">
+                    <article>Email:-</article>
+                    <p>Pratikagnihotri1234@gmail.com</p>
+                </div>
+                <div class="pro">
+                    <article>Company Name</article>
+                    <p>Alphabet</p>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            {% for req in allreq %}
+            <div class="block1" id="blackk">
+                <div class="part1" id="something">
+                    <div class="company_name">
+                        {{req[0]}}
+                    </div>
+                    <div class="post">
+                        {{req[1]}}
+                    </div>
+                    <!-- <div class="job_des">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores alias eos quos numquam quo
+                        odit,
+                        consequatur maxime reiciendis vero praesentium hic ducimus sit accusantium, nisi id quod dolore
+                        harum est? Explicabo nisi odio aliquid.
+                    </div> -->
+                </div>
+                <div class="part2">
+                    <div class="part21">
+                        {{req[2]}}
+                    </div>
+                    <div class="part22">
+                        <p>
+                            Contact Now
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+
+    </main>
+</body>
+
+</html>
