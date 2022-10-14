@@ -31,7 +31,7 @@ flow = Flow.from_client_secrets_file(
 #database Configuration
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '123456'
+app.config['MYSQL_PASSWORD'] = 'Suyash@717'
 app.config['MYSQL_DB'] = 'findmyjob'
 
 mysql = MySQL(app)
@@ -156,13 +156,17 @@ def seeker_signup():
 def seeker_details():
     if request.method == "POST":
         details = request.form
-        name = details['fullName']
-        company = details['companyName']
-        designation = details['designation']
-        experience = details['experience']
+        name = details['fullname']
+        gender = details['gender']
+        dob = details['dob']
+        education = details['education']
+        skills = details['skills']
+        '''phone = details['phoneno']'''
+        address = details['address']
+        post = details['post']
         username = session['username']
         cursor = mysql.connection.cursor()
-        cursor.execute("update seeker_basicData set full_name=%s, current_company=%s, current_designation=%s, job_experience=%s where username=%s", (name, company, designation, experience, username))
+        cursor.execute("update seeker_basicData set full_name=%s, gender=%s, dob=%s, education=%s, skills=%s, address=%s, post=%s where username=%s", (name, gender, dob, education, skills, address, post, username))
         mysql.connection.commit()
         cursor.close()
         return redirect('seeker_login')
