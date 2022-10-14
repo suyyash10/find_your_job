@@ -75,10 +75,13 @@ def seeker_login():
         cursor = mysql.connection.cursor()
         cursor.execute("select * from seeker_loginData where username=%s", (username,))
         details = cursor.fetchone()
-        test = details[1]
-        test = test.encode()
-        test = f.decrypt(test)
-        test = test.decode()
+        if details:
+            test = details[1]
+            test = test.encode()
+            test = f.decrypt(test)
+            test = test.decode()
+        else:
+            return render_template("login.html") 
         if details and test == password:
             session['loggedIn']= True
             session['username']= details[0]
@@ -176,7 +179,6 @@ def company_signup():
             query = "create table "+username+" (jobID int primary key, post varchar(50))"
             cursor.execute(query)
             cursor.commit()
-            mysql.connection.commit()
             cursor.close()
             return redirect('company_login')
         cursor.close()
@@ -233,7 +235,10 @@ def seeker_profile():
 @app.route("/recruiter_profile", methods=['GET', 'POST'])
 def recruiter_profile():
     cursor = mysql.connection.cursor()
-    query = "select * from "+session['username']
+    cursor.execute("select company_name from company_basicdata where username = %s", (session["username"],))
+    comp = cursor.fetchone()
+    comp = comp[0] 
+    query = "select * from jobs where Company = "+comp
     cursor.execute(query)
     alljobs = cursor.fetchall()
     cursor.execute("select * from company_basicData where username = %s", (session['username'],))
@@ -276,7 +281,6 @@ def add_job():
         location = details['location']
         tablename = session["username"]
         cursor.execute("insert into jobs values(%s, %s, %s, %s, %s, %s, %s)", (num, post, description, name, salary, location, skills,))
-        cursor.execute("insert into %s values(%s, %s)", (tablename, num1, post))
         cursor.commit()
         cursor.close()
         return redirect("recruiter_profile")
