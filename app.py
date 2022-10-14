@@ -31,7 +31,7 @@ flow = Flow.from_client_secrets_file(
 #database Configuration
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Suyash@717'
+app.config['MYSQL_PASSWORD'] = '123456'
 app.config['MYSQL_DB'] = 'findmyjob'
 
 mysql = MySQL(app)
@@ -175,6 +175,7 @@ def company_signup():
             cursor.execute("insert into company_loginData values(%s, %s)", (username, password))
             query = "create table "+username+" (jobID int primary key, post varchar(50))"
             cursor.execute(query)
+            cursor.commit()
             mysql.connection.commit()
             cursor.close()
             return redirect('company_login')
@@ -218,13 +219,13 @@ def seeker_profile():
     usrpost = basicdata[4]
     education = basicdata[5]
     skill = basicdata[6]
-    cursor.execute("select * from jobs where skill_set=%s", (skill,))
+    cursor.execute("select * from jobs where skills=%s", (skill,))
     alljobs = cursor.fetchall()
     if request.method == "POST":
         id = request.form["action"]
         id = str(id)
         tablename = "job"+id
-        cursor.execute("insert into %s values(%s, %s, %s", (tablename, name, email, education))
+        cursor.execute("insert into %s values(%s, %s, %s)", (tablename, name, email, education))
     cursor.close()
     return render_template("seeker_profile.html",alljobs=alljobs, name=name, email=email, usrpost=usrpost)
 
@@ -248,7 +249,7 @@ def recruiter_profile():
 @app.route("/add_job", methods=['GET', 'POST'])
 def add_job():
     cursor = mysql.connection.cursor()
-    cursor.execute("select company_name from company_basciData where username = %s", (session['username'],))
+    cursor.execute("select * from company_basicData where username = %s", (session['username'],))
     data = cursor.fetchone()
     name = data[1]
     email = data[2]
@@ -262,6 +263,7 @@ def add_job():
                 continue
             else:
                 break
+        num1 = num
         num = str(num)
         query = "create table job"+num+" (emp_username int primary key, emp_name varchar(40), emp_education varchar(50))"
         cursor.execute(query)
@@ -272,8 +274,9 @@ def add_job():
         salary = details['salary']
         skills = details['skills']
         location = details['location']
+        tablename = session["username"]
         cursor.execute("insert into jobs values(%s, %s, %s, %s, %s, %s, %s)", (num, post, description, name, salary, location, skills,))
-        cursor.execute("insert into %s values(%s, %s)", (session["username"], post))
+        cursor.execute("insert into %s values(%s, %s)", (tablename, num1, post))
         cursor.commit()
         cursor.close()
         return redirect("recruiter_profile")
