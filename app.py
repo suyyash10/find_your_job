@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import *
 from flask_mysqldb import *
 from cryptography.fernet import Fernet
@@ -45,25 +46,6 @@ def login_is_required(function):
             return function
     return wrapper
 
-
-#Class for Data Retrival form database
-class Jobs(mysql):
-    cursor = mysql.connection.cursor()
-    cursor.execute("select Company from jobs")
-    company = cursor.fetchall()
-    cursor.clear()
-    cursor.execute("select post from jobs")
-    post = cursor.fetchall()
-    cursor.clear()
-    cursor.execute("select Description from jobs")
-    description = cursor.fetchall()
-    cursor.clear()
-    cursor.execute("select Recruiter_Name from jobs")
-    reqName = cursor.fetchall()
-    cursor.clear()
-    cursor.execute("select Recruiter_Post from jobs")
-    reqPost = cursor.fetchall()
-    cursor.clear()
 '''
 
 #function to check if a table exist in the database
@@ -81,6 +63,7 @@ def check_table(name):
 #Home page
 @app.route("/")
 def home():
+    session.clear()
     return render_template("home.html")
 
 #Seeker Login function
@@ -235,27 +218,14 @@ def seeker_profile():
     email = basicdata[1]
     usrpost = basicdata[4]
     education = basicdata[5]
-    '''cursor.execute("select count(*) from jobs")
-    number = cursor.fetchone()
-    number = int(number[0])
-    cursor.execute("select Company from jobs")
-    company = cursor.fetchall()
-    cursor.execute("select post from jobs")
-    post = cursor.fetchall()
-    cursor.execute("select Description from jobs")
-    description = cursor.fetchall()
-    cursor.execute("select Recruiter_Name from jobs")
-    reqName = cursor.fetchall()
-    cursor.execute("select Recruiter_Post from jobs")
-    reqPost = cursor.fetchall()'''
-    cursor.execute("select * from jobs")
+    skill = basicdata[6]
+    cursor.execute("select * from jobs where skill_set=%s", (skill,))
     alljobs = cursor.fetchall()
     if request.method == "POST":
         id = request.form["action"]
         id = str(id)
         tablename = "job"+id
-        cursor.execute("insert into %s values(%s, %s, %s", (tablename, name, email, education,))
-
+        cursor.execute("insert into %s values(%s, %s, %s", (tablename, name, email, education))
     cursor.close()
     return render_template("seeker_profile.html",alljobs=alljobs, name=name, email=email, usrpost=usrpost)
 
@@ -268,14 +238,23 @@ def recruiter_profile():
     alljobs = cursor.fetchall()
     cursor.execute("select * from company_basicData where username = %s", (session['username'],))
     data = cursor.fetchall()
+    if request.method == "POST":
+        jobId = request.form["action"]
+        session["jobId"]=jobId
+        cursor.close()
     cursor.close()
     return render_template("job_giver.html", alljobs=alljobs, data=data)
 
 #Add Job
 @app.route("/add_job", methods=['GET', 'POST'])
 def add_job():
+    cursor = mysql.connection.cursor()
+    cursor.execute("select company_name from company_basciData where username = %s", (session['username'],))
+    data = cursor.fetchone()
+    name = data[1]
+    email = data[2]
+    username = data[0]
     if request.method == "POST":
-        cursor = mysql.connection.cursor()
         while true:
             num = random.randint(100000, 999999)
             cursor.execute("select * from jobs where jobID = %s", (num, ))
@@ -292,16 +271,20 @@ def add_job():
         post = details['keyword']
         #exp = details['experience']
         salary = details['salary']
-        industry = details['industry']
+        skills = details['skills']
         location = details['location']
-        cursor.execute("select company_name from company_basciData where username = %s", session['username'])
-        name = cursor.fetchone()
-        name = name[0]
-        cursor.execute("insert into jobs values(%s, %s, %s, %s, %s, %s, %s)", (num, post, description, name, salary, location, industry,))
+        cursor.execute("insert into jobs values(%s, %s, %s, %s, %s, %s, %s)", (num, post, description, name, salary, location, skills,))
+        cursor.execute("insert into %s values(%s, %s)", (session["username"], post))
         cursor.commit()
         cursor.close()
         return redirect("recruiter_profile")
-    return render_template("add_job.html")
+    cursor.close()
+    return render_template("add_job.html", name=name, email=email, username=username)
+
+#Screening
+@app.route("/screening", methods=["GET", "POST"])
+def screening():
+    return render_template("screening.html")
 
 
 if __name__ == "__main__":

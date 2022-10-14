@@ -35,29 +35,52 @@
            </div>
         </div>
         <div class="form_detail" id="black">
-            <form action="" class="form" id="black3">
+            <form action="" class="form" id="black3" method="POST">
                 <div id="black5">
                     <div>
-                        <p>Your Name</p>
-                        <input id="black2" class="inputs" type="text" placeholder="Name"><br>
-                        <p>Current Company's Name</p>
-                        <input id="black2" class="inputs" type="text" placeholder="Company's Name"><br>
-                        <p>Email</p>
-                        <input id="black2" class="inputs" type="email" name="" id=""
-                            placeholder="Professional Email"><br>
-                        <p>Post</p>
-                        <input id="black2" class="inputs" type="text" placeholder="Designation"><br>
-                    </div>
+                        <p>FULL NAME</p>
+                        <input id="black2" class="inputs" type="text" name="fullname"placeholder="yourname surname" required><br>
+                        <p>GENDER</p>
+                        
+                        <select name="gender">  
+                            <option value="male">male</option>  
+                            <option value="female">female</option>  
+                        </select>
+                        <p>DATE OF BIRTH</p>
+                        <input id="black2" class="inputs" type="date" name="dob" placeholder="DOB" required><br>
+                        <p>EDUCATION</p> 
+                        <select name="education">  
+                            <option value="Course">Course</option>  
+                            <option value="hsc">HSC</option> 
+                            <option value="diploma">DIPLOMA</option>   
+                            <option value="B.Tech">B.Tech</option>  
+                            <option value="BCA">BCA</option> 
+                            <option value="MCA">MCA</option>  
+                            <option value="M.Tech">M.Tech</option>  
+                            </select>
+
+                        <p>SKILLS</p>
+                        <select name="skills">  
+                            <option value="c">c</option>  
+                            <option value="c++">c++</option> 
+                            <option value="c#">c#</option>
+                            <option value="python">python</option>   
+                            <option value="java">java</option>  
+                            <option value="javascript">javascript</option> 
+                            <option value="sql">sql</option>  
+                            <option value="html,css">html,css</option>  
+                            </select>
+                        
+                        
+                    </div>  
                     <div>
-                        <p>Your Name</p>
-                        <input id="black2" class="inputs" type="text" placeholder="Name"><br>
-                        <p>Current Company's Name</p>
-                        <input id="black2" class="inputs" type="text" placeholder="Company's Name"><br>
-                        <p>Email</p>
-                        <input id="black2" class="inputs" type="email" name="" id=""
-                            placeholder="Professional Email"><br>
-                        <p>Post</p>
-                        <input id="black2" class="inputs" type="text" placeholder="Designation"><br>
+                        <!--<p>PHONE NO</p>
+                        <input id="black2" class="inputs" type="NUMBER" name="phoneno" placeholder="Phone no" maxlength="10" required><br>!-->
+                        <p>address</p>
+                        <input id="black2" class="inputs" type="text" name="address" placeholder="your address" required><br>
+                        
+                        <p>Position you are applying for </p>
+                        <input id="black2" class="inputs" type="text" name="post" placeholder="Designation" required><br>
                     </div>
                 </div>
                 <button id="black4">Submit</button>

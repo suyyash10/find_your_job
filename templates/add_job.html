@@ -28,16 +28,16 @@
         <div class="left">
             <div class="details">
                 <div class="name">
-                    <article>Your Name:-</article>
-                    <p>Pratik Agnihotri</p>
+                    <article>Username:-</article>
+                    <p>{{userName}}</p>
                 </div>
                 <div class="email">
-                    <article>Email:-</article>
-                    <p>pratikagnihotri1234@gmail.com</p>
+                    <article>Company Name:-</article>
+                    <p>{{name}}</p>
                 </div>
                 <div class="pro">
-                    <article>Your Company Name:-</article>
-                    <p>Meta</p>
+                    <article>Name:-</article>
+                    <p>{{email}}</p>
                 </div>
             </div>
         </div>
@@ -45,17 +45,17 @@
     <div class="right">
         <form class="form" method="post">
             <label for="cname" class="right_form">Company Name:</label>
-            <input type="text" class="txt" id="cname" name="compname" placeholder="Enter Company Name" required>
+            <input type="text" class="txt" id="cname" name="compname" placeholder="Enter Company Name" required value="{{name}}">
 
             <label for="cemail" class="right_form">Company Email:</label>
-            <input type="email" class="txt" id="cemail" name="compemail" placeholder="example@domain.com" required>
+            <input type="email" class="txt" id="cemail" name="compemail" placeholder="example@domain.com" required value="{{email}}">
             <br>
 
             <label for="descrip" class="right_form">Job Description:</label>
-            <input type="text" class="txt" id="descrip" name="description" required>
+            <input type="text" class="txt" id="descrip" name="description" placeholder="Enter Description" required>
 
             <label for="keyword" class="right_form">Keyword:</label>
-            <input type="text" class="txt" id="keyword" name="keyword" placeholder= Enter Skills or Designation" required>
+            <input type="text" class="txt" id="keyword" name="keyword" placeholder= "Enter Designation" required>
 
             <br>
 
@@ -70,8 +70,17 @@
             <label for="sal" class="right_form"> Annual Salary:</label>
             <input type="text" class="txt" id="sal" name="salary" placeholder="Enter Annual Salary" required>
 
-            <label for="indus" class="right_form">Industry:</label>
-            <input type="text" class="txt" id="indus" name="industry" placeholder="Enter Related Industry" required>
+            <label for="indus" class="right_form">Skill</label>
+            <select name="skills">  
+                <option value="c">c</option>  
+                <option value="c++">c++</option> 
+                <option value="c#">c#</option>
+                <option value="python">python</option>   
+                <option value="java">java</option>  
+                <option value="javascript">javascript</option> 
+                <option value="sql">sql</option>  
+                <option value="html,css">html,css</option>  
+                </select>
 
             <br>
 

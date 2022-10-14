@@ -39,28 +39,30 @@
             </div>
         </div>
         <div class="right">
-            <div class="buttons" type="submit" value="add">
+            <div class="buttons" type="submit" value="add" href="{{url_for('add_job')}}">
                 <p>
                     Add Opening
                 </p>
             </div>
             <div class="showme">
-                <form action="">
+                
                     <input type="text" placeholder="Enter the position of Opening">
                     <img src="https://img.icons8.com/material-sharp/24/000000/search.png"/>
-                </form>
+                
             </div>
+            <form action="" method="post">
             {% for job in alljobs %}
             <div class="block1">
                 <div class="part1">
                     <p>{{job[1]}}</p>
                 </div>
                 <div class="part2">
-                    <p>Check Applications</p>
+                    <input type="submit" name="action" value = "{{job[0]}}" placeholder="Check Applications">
                     <p>Delete</p>
                 </div>
             </div>
             {% endfor %}
+            </form>
             <div class="block1">
                 <div class="part1">
                     <p>Web Developer</p>
