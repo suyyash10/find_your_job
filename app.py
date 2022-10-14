@@ -1,4 +1,3 @@
-from crypt import methods
 from flask import *
 from flask_mysqldb import *
 from cryptography.fernet import Fernet
