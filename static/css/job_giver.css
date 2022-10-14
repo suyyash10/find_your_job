@@ -80,12 +80,18 @@ header {
   align-items: center;
   font-size: 1.5rem;
 }
-.part2 p {
+.part2 input {
+  font-size: 1.5rem;
+}
+.part2 p , .somewhat{
   background-color: black;
   color: white;
   padding: 10px;
   border-radius: 12px;
   cursor: pointer;
+}
+.suchbhi{
+  height:auto;
 }
 .buttons {
   float: right;
@@ -96,6 +102,11 @@ header {
   background-color: black;
   border-radius: 12px;
   cursor: pointer;
+  /* height:50vh; */
+}
+.buttons a{
+  color: white;
+  text-decoration: none;
 }
 .showme {
   display: none;
@@ -122,6 +133,7 @@ header {
   display: block;
   top: 0vh;
 }
+
 @media screen and (max-width:"800px") {
     *{
       background-color:black;

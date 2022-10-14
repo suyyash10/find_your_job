@@ -176,9 +176,7 @@ def company_signup():
         if not test:
             cursor.execute("insert into company_basicData values(%s, %s, %s, %s)", (username, companyName, companyEmail, companyCity))
             cursor.execute("insert into company_loginData values(%s, %s)", (username, password))
-            query = "create table "+username+" (jobID int primary key, post varchar(50))"
-            cursor.execute(query)
-            cursor.commit()
+            mysql.connection.commit()
             cursor.close()
             return redirect('company_login')
         cursor.close()
@@ -218,7 +216,7 @@ def seeker_profile():
     basicdata = cursor.fetchone()
     name = basicdata[2]
     email = basicdata[1]
-    usrpost = basicdata[4]
+    usrpost = basicdata[6]
     education = basicdata[5]
     skill = basicdata[6]
     cursor.execute("select * from jobs where skills=%s", (skill,))
@@ -238,8 +236,7 @@ def recruiter_profile():
     cursor.execute("select company_name from company_basicdata where username = %s", (session["username"],))
     comp = cursor.fetchone()
     comp = comp[0] 
-    query = "select * from jobs where Company = "+comp
-    cursor.execute(query)
+    cursor.execute("select * from jobs where Company=%s", (comp,))
     alljobs = cursor.fetchall()
     cursor.execute("select * from company_basicData where username = %s", (session['username'],))
     data = cursor.fetchall()
@@ -281,7 +278,7 @@ def add_job():
         location = details['location']
         tablename = session["username"]
         cursor.execute("insert into jobs values(%s, %s, %s, %s, %s, %s, %s)", (num, post, description, name, salary, location, skills,))
-        cursor.commit()
+        mysql.connection.commit()
         cursor.close()
         return redirect("recruiter_profile")
     cursor.close()

@@ -39,31 +39,37 @@
             </div>
         </div>
         <div class="right">
-            <div class="buttons" type="submit" value="add" ">
-                <a href="{{url_for('add_job')}}">
-                    Add Opening
-                </a>
+            <div class="suchbhi">
+
+                <div class="buttons" type="submit" value="add" >
+                    <a href="{{url_for('add_job')}}">
+                        Add Opening
+                    </a>
+                </div>
             </div>
-            <div class="showme">
+            <!-- <div class="showme">
                 
                     <input type="text" placeholder="Enter the position of Opening">
                     <img src="https://img.icons8.com/material-sharp/24/000000/search.png"/>
                 
-            </div>
+            </div> -->
             <form action="" method="post">
-            {% for job in alljobs %}
+                {% for job in alljobs %}
             <div class="block1">
                 <div class="part1">
                     <p>{{job[1]}}</p>
                 </div>
+                <div class="hidden">
+                    <input hidden type="text" value="{{job[0]}}">
+                </div>
                 <div class="part2">
-                    <input type="submit" name="action" value = "{{job[0]}}" placeholder="Check Applications">
+                    <input class="somewhat" type="submit" name="action"  value="Check Applications">
                     <p>Delete</p>
                 </div>
             </div>
             {% endfor %}
-            </form>
-            <div class="block1">
+        </form>
+            <!-- <div class="block1">
                 <div class="part1">
                     <p>Web Developer</p>
                 </div>
@@ -107,16 +113,7 @@
                     <p>Check Applications</p>
                     <p>Delete</p>
                 </div>
-            </div>
-            <div class="block1">
-                <div class="part1">
-                    <p>Web Developer</p>
-                </div>
-                <div class="part2">
-                    <p>Check Applications</p>
-                    <p>Delete</p>
-                </div>
-            </div>
+            </div> -->
         </div>
     </main>
     <script src="{{url_for('static', filename = 'js/form.js')}}"></script>
