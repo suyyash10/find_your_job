@@ -269,7 +269,7 @@ def add_job():
             else:
                 break
         num = str(num)
-        query = "create table job"+num+" (emp_name varchar(100) primary key, emp_email varchar(50), emp_education varchar(50))"
+        query = "create table job"+num+" (emp_name varchar(100), emp_email varchar(50), emp_education varchar(50))"
         cursor.execute(query)
         details= request.form
         description = details['description']
