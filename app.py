@@ -92,7 +92,7 @@ def seeker_login():
             msg="Incorrrect Username/Password"
             cursor.close()
             return render_template("login.html", msg=msg )               
-    return render_template("login.html")
+    return render_template("seeker_login.html")
 
 #Seeker Google Login function
 '''
@@ -204,8 +204,8 @@ def company_login():
         else:
             msg="Incorrrect Username/Password"
             cursor.close()
-            return render_template("login.html", msg=msg)               
-    return render_template("login.html")
+            return render_template("company_login.html", msg=msg)               
+    return render_template("company_login.html")
 
 #Seeker Profile function
 @app.route("/user_profile", methods=['GET', 'POST'])

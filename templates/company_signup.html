@@ -28,11 +28,7 @@
                 <a href="#"><b>Want to find someone?</b></a> 
             </p>
            </div>
-           <div class="seeker">
-            <p>
-                <a href="{{ url_for('seeker_login')}}">Want to find new job?</a> 
-            </p>
-           </div>
+           
         </div>
         <div class="form_detail">
             <form action=""  method="post" class="form">
@@ -51,6 +47,7 @@
                 <input class="inputs" type="text" name='password' placeholder="Retype Password"><br>
 
                 <button>Submit</button>
+                <a href="{{url_for('company_login')}}">Already Have an account?</a>
             </form>
         </div>
     </main>
