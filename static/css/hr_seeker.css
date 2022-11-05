@@ -79,3 +79,7 @@ header{
     font-size: 3vw;
     cursor: pointer;
 }
+.form a{
+    color: white;
+    text-decoration: none;
+}
