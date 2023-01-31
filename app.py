@@ -235,7 +235,7 @@ def seeker_profile():
 @app.route("/recruiter_profile", methods=['GET', 'POST'])
 def recruiter_profile():
     cursor = mysql.connection.cursor()
-    cursor.execute("select company_name from company_basicdata where username = %s", (session["username"],))
+    cursor.execute("select company_name from company_basicData where username = %s", (session["username"],))
     comp = cursor.fetchone()
     comp = comp[0] 
     cursor.execute("select * from jobs where Company=%s", (comp,))
