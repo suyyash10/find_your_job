@@ -6,3 +6,5 @@ create table company_loginData(username varchar(20) primary key, password varcha
 create table company_basicData(username varchar(20) primary key, company_name varchar(30), company_email varchar(50), city varchar(20));
 create table jobs(jobID int primary key, Post varchar(40), Description varchar(500), Company varchar(50), salary varchar(40), location varchar(40), skills varchar(30));
 commit;
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
+commit;
